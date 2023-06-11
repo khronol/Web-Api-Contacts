@@ -1,0 +1,52 @@
+﻿@model Contacts.Views.Home.IndexModel
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>DADADAD</title>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>Фамилия</th>
+            <th>Имя</th>
+            <th>Отчество</th>
+            <th>Номер</th>
+            <th>Адрес</th>
+            <th>Описание</th>
+        </tr>
+        @{
+            foreach (Contacts.Models.Kont kont in ViewBag.Contacts)
+            {
+                <form action="~/Info/UpdateData" method="post">
+                <tr style="background-color: yellow; font-weight: bold">
+                    <td>
+                        <input type="text" value="@kont.Id" disabled="disabled" style="width: 20px" />
+                    </td>
+                    <td>
+                        <input type="text" name="SurName" value="@kont.Surname" />
+                    </td>
+                    <td>
+                        <input type="text" name="Name" value="@kont.MainName" />
+                    </td>
+                    <td>
+                        <input type="text" name="Otch" value="@kont.Otch" />
+                    </td>
+                    <td>
+                        <input type="text" name="Phone" value="@kont.Phone" />
+                    </td>
+                    <td>
+                        <input type="text" name="Address" value="@kont.Surname" />
+                    </td>
+                    <td>
+                        <input type="text" name="Caption" value="@kont.Caption" />
+                    </td>
+                    <td>
+                        <input name="id" type="submit" value="изменить-@kont.Id" style="height:30px; background-color:navy;color: white; font-weight: bold" />
+                    </td>
+                </tr>
+                </form>
+            }
+        }
+    </table>
+        </body>
+</html>

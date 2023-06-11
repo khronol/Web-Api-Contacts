@@ -1,0 +1,46 @@
+﻿@page
+@model Contacts.Views.Home.IndexModel
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>ContList</title>
+    <script src="~/js/JavaScript.js"></script>
+</head>
+
+<body>
+    @{
+        <table border="1">
+            <tr>
+                <th>Id</th>
+                <th>Фамилия</th>
+                <th>Имя</th>
+                <th>Отчество</th>
+                <th>Номер</th>
+                <th>Адрес</th>
+                <th>Описание</th>
+            </tr>
+            @{
+                foreach (Contacts.Models.Kont kont in ViewBag.Contacts)
+                {
+                    <form action="~/Info/DeleteData" method="post">
+                    <tr>
+                        <td>@kont.Id </td>
+                        <td>@kont.Surname</td>
+                        <td>@kont.MainName</td>
+                        <td>@kont.Otch</td>
+                        <td>@kont.Phone</td>
+                        <td>@kont.Address</td>
+                        <td>@kont.Caption</td>
+                        <td>
+                            <input name="id" type="submit" value="удалить-@kont.Id" />
+                        </td>
+                    </tr>
+                    </form>
+                }
+            }
+        </table>
+        <a href="/Info/Info" class="btn">Add</a>
+        <a href="/Info/Editor" class="btn">Edit</a>
+    }
+
+</body>
+</html>

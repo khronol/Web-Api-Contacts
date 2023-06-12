@@ -1,5 +1,4 @@
-﻿@page
-@model Contacts.Views.Home.IndexModel
+﻿
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>ContList</title>
@@ -21,7 +20,7 @@
             @{
                 foreach (Contacts.Models.Kont kont in ViewBag.Contacts)
                 {
-                    <form action="~/Info/DeleteData" method="post">
+                    <form action="~/Home/DeleteData" method="post">
                     <tr>
                         <td>@kont.Id </td>
                         <td>@kont.Surname</td>
@@ -38,8 +37,8 @@
                 }
             }
         </table>
-        <a href="/Info/Info" class="btn">Add</a>
-        <a href="/Info/Editor" class="btn">Edit</a>
+        <a href="/Home/Info" class="btn">Add</a>
+        <a href="/Home/Editor" class="btn">Edit</a>
     }
 
 </body>

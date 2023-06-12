@@ -26,9 +26,9 @@ namespace Contacts.Data
                     context.Contacts.Add(section);
                 }
 
-                context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[Contacts] ON");
+                context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT [dbo].[Contacts] ON");
                 context.SaveChanges();
-                context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[Contacts] OFF");
+                context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT [dbo].[Contacts] OFF");
                 trans.Commit();
             }
         }

@@ -1,5 +1,6 @@
 using Contacts.Data;
 using Contacts.DataContext;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,7 +17,7 @@ namespace Contacts
     {
         public static void Main(string[] args)
         {
-            var init = CreateHostBuilder(args).Build();
+            var init = BuildWebHost(args);
             using (var scope = init.Services.CreateScope())
             {
                 var s = scope.ServiceProvider;
@@ -26,11 +27,9 @@ namespace Contacts
             init.Run();
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
+        public static IWebHost BuildWebHost(string[] args) =>
+           WebHost.CreateDefaultBuilder(args)
+               .UseStartup<Startup>()
+               .Build();
     }
 }

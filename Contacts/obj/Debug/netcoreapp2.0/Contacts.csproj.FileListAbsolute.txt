@@ -1,0 +1,16 @@
+D:\Contacts\dadaFerrum\Contacts\obj\Debug\netcoreapp2.0\Contacts.csproj.AssemblyReference.cache
+D:\Contacts\dadaFerrum\Contacts\obj\Debug\netcoreapp2.0\Contacts.GeneratedMSBuildEditorConfig.editorconfig
+D:\Contacts\dadaFerrum\Contacts\obj\Debug\netcoreapp2.0\Contacts.AssemblyInfoInputs.cache
+D:\Contacts\dadaFerrum\Contacts\obj\Debug\netcoreapp2.0\Contacts.AssemblyInfo.cs
+D:\Contacts\dadaFerrum\Contacts\obj\Debug\netcoreapp2.0\Contacts.csproj.CoreCompileInputs.cache
+D:\Contacts\dadaFerrum\Contacts\bin\Debug\netcoreapp2.0\web.config
+D:\Contacts\dadaFerrum\Contacts\bin\Debug\netcoreapp2.0\appsettings.Development.json
+D:\Contacts\dadaFerrum\Contacts\bin\Debug\netcoreapp2.0\appsettings.json
+D:\Contacts\dadaFerrum\Contacts\bin\Debug\netcoreapp2.0\Contacts.deps.json
+D:\Contacts\dadaFerrum\Contacts\bin\Debug\netcoreapp2.0\Contacts.runtimeconfig.json
+D:\Contacts\dadaFerrum\Contacts\bin\Debug\netcoreapp2.0\Contacts.runtimeconfig.dev.json
+D:\Contacts\dadaFerrum\Contacts\bin\Debug\netcoreapp2.0\Contacts.dll
+D:\Contacts\dadaFerrum\Contacts\bin\Debug\netcoreapp2.0\Contacts.pdb
+D:\Contacts\dadaFerrum\Contacts\obj\Debug\netcoreapp2.0\Contacts.dll
+D:\Contacts\dadaFerrum\Contacts\obj\Debug\netcoreapp2.0\Contacts.pdb
+D:\Contacts\dadaFerrum\Contacts\obj\Debug\netcoreapp2.0\Contacts.genruntimeconfig.cache

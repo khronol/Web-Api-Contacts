@@ -1,40 +1,47 @@
-using Contacts.Auth;
+ï»¿using Contacts.Auth;
 using Contacts.Data;
 using Contacts.DataContext;
 using Contacts.Interfaces;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Contacts
 {
     public class Startup
     {
-        public IConfiguration Configuration;
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddDbContext<ContactsDbContext>(options => options.UseSqlServer(
                 Configuration.GetConnectionString("DefaultConnection")));
-
             services.AddTransient<IContactsData, ContactsData>();
 
             services.AddMvc();
+
+            #region //
+
+            services.AddAuthorization();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(o =>
+    {
+        o.LoginPath = "/api/login";
+        o.LogoutPath = "/api/logout";
+        // additional config options here
+    });
+
 
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<ContactsDbContext>()
@@ -42,36 +49,39 @@ namespace Contacts
 
             services.Configure<IdentityOptions>(options =>
             {
-                options.Password.RequiredLength = 6; // ìèíèìàëüíîå êîëè÷åñòâî çíàêîâ â ïàðîëå
+                options.Password.RequiredLength = 6; // Ð¼Ð¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ðµ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð·Ð½Ð°ÐºÐ¾Ð² Ð² Ð¿Ð°Ñ€Ð¾Ð»Ðµ
 
 
 
-                options.Lockout.MaxFailedAccessAttempts = 10; // êîëè÷åñòâî ïîïûòîê î áëîêèðîâêè
+                options.Lockout.MaxFailedAccessAttempts = 10; // ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð¿Ð¾Ð¿Ñ‹Ñ‚Ð¾Ðº Ð¾ Ð±Ð»Ð¾ÐºÐ¸Ñ€Ð¾Ð²ÐºÐ¸
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
                 options.Lockout.AllowedForNewUsers = true;
             });
 
             services.ConfigureApplicationCookie(options =>
             {
-                // êîíôèãóðàöèÿ Cookie ñ öåëüþ èñïîëüçîâàíèÿ èõ äëÿ õðàíåíèÿ àâòîðèçàöèè
+                // ÐºÐ¾Ð½Ñ„Ð¸Ð³ÑƒÑ€Ð°Ñ†Ð¸Ñ Cookie Ñ Ñ†ÐµÐ»ÑŒÑŽ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ð½Ð¸Ñ Ð¸Ñ… Ð´Ð»Ñ Ñ…Ñ€Ð°Ð½ÐµÐ½Ð¸Ñ Ð°Ð²Ñ‚Ð¾Ñ€Ð¸Ð·Ð°Ñ†Ð¸Ð¸
                 options.Cookie.HttpOnly = true;
                 options.Cookie.Expiration = TimeSpan.FromMinutes(30);
                 options.LoginPath = "/Account/Login";
                 options.LogoutPath = "/Account/Logout";
                 options.SlidingExpiration = true;
             });
+
+            #endregion
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseStaticFiles();
-            app.UseRouting();
+
             app.UseAuthentication();
 
-            app.UseEndpoints(endpoints =>
+            app.UseMvc(routes =>
             {
-                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

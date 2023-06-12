@@ -17,7 +17,7 @@
         @{
             foreach (Contacts.Models.Kont kont in ViewBag.Contacts)
             {
-                <form action="~/Info/UpdateData" method="post">
+                <form action="~/Home/UpdateData" method="post">
                 <tr style="background-color: yellow; font-weight: bold">
                     <td>
                         <input type="text" value="@kont.Id" disabled="disabled" style="width: 20px" />

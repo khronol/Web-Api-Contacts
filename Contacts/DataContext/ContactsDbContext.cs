@@ -7,7 +7,7 @@ namespace Contacts.DataContext
 {
     public class ContactsDbContext : IdentityDbContext<User>
     {
-        public ContactsDbContext(DbContextOptions options) : base(options) { }
+        public ContactsDbContext(DbContextOptions options) : base(options) {}
 
         public DbSet<Kont> Contacts { get; set; }
     }

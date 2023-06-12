@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Contacts.Models;
+using Contacts.DataContext;
+using System.Linq;
 
 namespace Contacts.Controllers
 {
@@ -12,9 +14,10 @@ namespace Contacts.Controllers
         {
             this.contactsData = ContactsData;
         }
-        public IActionResult Index(IContactsData data)
+        public IActionResult Index()
         {
-            return View(contactsData.GetContacts());
+            ViewBag.Contacts = contactsData.GetContacts();
+            return View();
         }
 
         public IActionResult Info()
@@ -26,8 +29,7 @@ namespace Contacts.Controllers
             ViewBag.Contacts = contactsData.GetContacts();
             return View();
         }
-        [HttpGet]
-        [Authorize]
+        [HttpPost]
         public IActionResult GetData(string surname, string name, string otch, string phone, string address, string caption)
         {
             Kont temp = new Kont()
@@ -44,29 +46,18 @@ namespace Contacts.Controllers
 
             return Redirect("~/");
         }
-        //public IActionResult DeleteData(string id)
-        //{
-        //    id = id.Remove(0, id.Length - 1);
-        //    db.Contacts.Remove(db.Contacts.Find(int.Parse(id)));
-        //    db.SaveChanges();
-        //    return Redirect("~/");
-        //}
-        //public IActionResult UpdateData(string id, string surname, string name, string otch, string phone, string address, string caption)
-        //{
-        //    id = id.Remove(0, id.Length - 1);
-        //    db.Contacts.Update(
-        //        new Contacts()
-        //        {
-        //            Id = int.Parse(id),
-        //            Surname = surname,
-        //            MainName = name,
-        //            Otch = otch,
-        //            Phone = phone,
-        //            Address = address,
-        //            Caption = caption
-        //        });
-        //    db.SaveChanges();
-        //    return Redirect("~/");
-        //}
+        public IActionResult DeleteData(string id)
+        {
+            id = id.Remove(0,id.IndexOf('-')+1);
+            contactsData.RemoveContact(id);
+            return Redirect("index");
+        }
+        public IActionResult updateData(string id, string surname, string name, string otch, string phone, string address, string caption)
+        {
+            id = id.Remove(0, id.IndexOf('-') + 1);
+            contactsData.EditContact(id, surname, name, otch, phone, address, caption);
+
+            return Redirect("~/");
+        }
     }
 }

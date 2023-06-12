@@ -19,7 +19,7 @@ namespace Contacts.Controllers
             ViewBag.Contacts = contactsData.GetContacts();
             return View();
         }
-
+        [Authorize(Roles = "admin")]
         public IActionResult Info()
         {
             return View();

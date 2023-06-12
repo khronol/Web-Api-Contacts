@@ -29,7 +29,9 @@ namespace Contacts
 
         public static IWebHost BuildWebHost(string[] args) =>
            WebHost.CreateDefaultBuilder(args)
+            .UseUrls("http://localhost:5000", "http://*:80")
                .UseStartup<Startup>()
+            .ConfigureLogging(log => log.AddConsole())
                .Build();
     }
 }

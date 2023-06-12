@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Contacts.Auth;
+using Microsoft.Extensions.Logging;
 
 namespace Contacts.Controllers
 {

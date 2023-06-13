@@ -27,7 +27,7 @@ namespace Contacts
 
             services.AddDbContext<ContactsDbContext>(options => options.UseSqlServer(
                 Configuration.GetConnectionString("DefaultConnection")));
-            services.AddTransient<IContactsData, ContactsData>();
+            services.AddTransient<IContactsData, CarDataApi>();
 
             services.AddMvc();
 

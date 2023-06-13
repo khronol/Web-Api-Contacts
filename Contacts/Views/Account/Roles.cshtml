@@ -1,0 +1,16 @@
+﻿@page
+@model Contacts.Views.Account.IndexModel
+@{
+}
+<div>
+    <form action="~/Account/Roles" method="Get">
+        @foreach (var item in ViewBag.Roles)
+        {
+            <ul>
+                <li>
+                    @item
+                </li>
+            </ul>
+        }
+    </form>
+</div>

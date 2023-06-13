@@ -15,11 +15,13 @@ namespace Contacts.Controllers
 
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
         }
 
         [HttpGet]
@@ -58,6 +60,7 @@ namespace Contacts.Controllers
         [HttpGet]
         public IActionResult Register()
         {
+            
             return View(new UserRegistration());
         }
 
@@ -72,6 +75,7 @@ namespace Contacts.Controllers
                 if (createResult.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, false);
+                    
                     return RedirectToAction("Index", "Home");
                 }
                 else//иначе
@@ -93,6 +97,10 @@ namespace Contacts.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
-
+        public IActionResult Roles()
+        {
+            ViewBag.Roles = _roleManager.Roles;
+            return View();
+        }
     }
 }

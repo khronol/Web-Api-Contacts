@@ -14,16 +14,20 @@ namespace Contacts.Controllers
         {
             this.contactsData = ContactsData;
         }
+        [HttpGet]
+        [AllowAnonymous]
         public IActionResult Index()
         {
             ViewBag.Contacts = contactsData.GetContacts();
             return View();
         }
-        [Authorize(Roles = "admin")]
+        [AllowAnonymous]
         public IActionResult Info()
         {
+            
             return View();
         }
+        [Authorize(Roles = "user, admin")]
         public IActionResult Editor()
         {
             ViewBag.Contacts = contactsData.GetContacts();
@@ -46,6 +50,7 @@ namespace Contacts.Controllers
 
             return Redirect("~/");
         }
+        [Authorize(Roles = "admin")]
         public IActionResult DeleteData(string id)
         {
             id = id.Remove(0,id.IndexOf('-')+1);

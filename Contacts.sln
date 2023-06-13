@@ -5,6 +5,10 @@ VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contacts", "Contacts\Contacts.csproj", "{B75A08E4-5826-4164-9D11-FBFF348CD790}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsWPF", "ContactsWPF\ContactsWPF.csproj", "{F30F91CF-E550-4847-B2F1-05EFC4160593}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csproj", "{F8EC8EB4-56F2-49AE-8641-AB3D43ADF090}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{B75A08E4-5826-4164-9D11-FBFF348CD790}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B75A08E4-5826-4164-9D11-FBFF348CD790}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B75A08E4-5826-4164-9D11-FBFF348CD790}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F30F91CF-E550-4847-B2F1-05EFC4160593}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F30F91CF-E550-4847-B2F1-05EFC4160593}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F30F91CF-E550-4847-B2F1-05EFC4160593}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F30F91CF-E550-4847-B2F1-05EFC4160593}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8EC8EB4-56F2-49AE-8641-AB3D43ADF090}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8EC8EB4-56F2-49AE-8641-AB3D43ADF090}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8EC8EB4-56F2-49AE-8641-AB3D43ADF090}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8EC8EB4-56F2-49AE-8641-AB3D43ADF090}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
